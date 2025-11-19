@@ -1,33 +1,55 @@
-# Configuration file for Credit Risk ML Project
+# Configuration file for Unsupervised Learning Project
 # Paths and settings for the project
 
 # Data paths
 data:
   raw_data_path: "data/raw/base_historica.csv"
   processed_data_path: "data/processed/processed_data.csv"
-  train_data_path: "data/processed/train.csv"
-  test_data_path: "data/processed/test.csv"
 
 # Model paths
 model:
-  model_path: "models/credit_risk_model.pkl"
+  pca_model_path: "models/pca_model.pkl"
+  umap_model_path: "models/umap_model.pkl"
+  kmeans_model_path: "models/kmeans_model.pkl"
+  dbscan_model_path: "models/dbscan_model.pkl"
   scaler_path: "models/scaler.pkl"
-  feature_names_path: "models/feature_names.pkl"
 
 # Logging
 logging:
   log_dir: "logs"
-  log_file: "logs/credit_risk_ml.log"
+  log_file: "logs/unsupervised_ml.log"
   log_level: "INFO"
 
-# Model parameters
-model_params:
-  test_size: 0.2
-  random_state: 42
-  cv_folds: 5
+# Preprocessing parameters
+preprocessing:
+  missing_value_strategy: "median"
+  outlier_method: "iqr"
+  outlier_threshold: 3.0
+  scaling_method: "standard"
+  categorical_encoding: "onehot"
 
-# Feature engineering
-features:
-  numerical_features: []
-  categorical_features: []
-  target_column: "default"
+# Dimensionality reduction parameters
+dim_reduction:
+  pca:
+    variance_threshold: 0.95
+    n_components: null  # null means use variance_threshold
+  umap:
+    n_components: 2
+    n_neighbors: 15
+    min_dist: 0.1
+    metric: "euclidean"
+
+# Clustering parameters
+clustering:
+  kmeans:
+    n_clusters: 3  # Will be determined by elbow method
+    random_state: 42
+    max_clusters_elbow: 10
+  dbscan:
+    eps: 0.5
+    min_samples: 5
+    metric: "euclidean"
+  hdbscan:
+    min_cluster_size: 5
+    min_samples: null
+

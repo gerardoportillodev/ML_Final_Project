@@ -1,269 +1,329 @@
-# Credit Risk ML Project
+# Unsupervised Learning Final Project
 
-A comprehensive Machine Learning project for credit risk prediction using classification algorithms. This project implements a complete ML pipeline including data loading, preprocessing, feature engineering, model training, and evaluation.
+An advanced unsupervised learning analysis project implementing dimensionality reduction and clustering techniques on real-world multidimensional data.
 
-## Project Structure
+## 📋 Project Overview
+
+This project demonstrates comprehensive unsupervised machine learning techniques including:
+- **Dimensionality Reduction**: PCA and UMAP
+- **Clustering**: KMeans and DBSCAN
+- **Evaluation**: Internal metrics (Silhouette, Davies-Bouldin, Calinski-Harabasz)
+- **Interpretation**: Domain-specific insights and actionable recommendations
+
+## 🎯 Project Goals
+
+1. Apply and compare multiple dimensionality reduction techniques
+2. Implement and evaluate various clustering algorithms
+3. Extract meaningful patterns and insights from unlabeled data
+4. Provide domain-specific interpretation of discovered segments
+5. Generate actionable recommendations based on cluster analysis
+
+## 📊 Dataset Description
+
+**[TO BE FILLED BY USER]**
+
+- **Source**: [Describe the data source - business/government/health/environment]
+- **Size**: ≥1000 rows, ≥10 variables
+- **Domain**: [Application domain]
+- **Variables**: [Brief description of key variables]
+- **Time Period**: [When was the data collected]
+
+Place your dataset file as `data/raw/base_historica.csv` before running the analysis.
+
+## 🗂️ Project Structure
 
 ```
 ML_Final_Project/
-├── src/                          # Source code
-│   ├── __init__.py
-│   ├── config_loader.py          # Configuration management
-│   ├── logger.py                 # Logging utilities
-│   ├── data_loader.py            # Data loading and cleaning
-│   ├── feature_engineering.py    # Feature preprocessing and engineering
-│   ├── train_model.py            # Model training
-│   └── evaluate_model.py         # Model evaluation
-├── notebooks/                     # Jupyter notebooks
-│   └── eda_credit_risk.ipynb     # Exploratory Data Analysis
-├── tests/                         # Unit tests
-│   ├── __init__.py
-│   └── test_data_pipeline.py     # Data pipeline tests
-├── config/                        # Configuration files
-│   └── config.yaml               # Project configuration
-├── data/                          # Data directory
-│   ├── raw/                      # Raw data files (place base_historica.csv here)
+├── data/
+│   ├── raw/                      # Raw data files (base_historica.csv)
 │   └── processed/                # Processed data files
-├── models/                        # Saved models
-├── logs/                          # Log files
-├── evaluation_results/            # Evaluation plots and results
-├── requirements.txt               # Python dependencies
-└── README.md                      # This file
+├── notebooks/
+│   ├── 01_eda_preprocessing.ipynb           # EDA and data preparation
+│   ├── 02_dimensionality_reduction.ipynb    # PCA and UMAP analysis
+│   ├── 03_clustering.ipynb                  # KMeans and DBSCAN
+│   └── 04_interpretation_conclusions.ipynb  # Insights and conclusions
+├── src/
+│   ├── data_loading.py           # Data loading utilities
+│   ├── preprocessing.py          # Data cleaning and preprocessing
+│   ├── dim_reduction.py          # Dimensionality reduction (PCA, UMAP)
+│   ├── clustering.py             # Clustering algorithms
+│   ├── evaluation.py             # Clustering evaluation metrics
+│   └── __init__.py
+├── reports/
+│   ├── technical_report_template.md  # Detailed technical report
+│   └── slides_outline.md             # Executive presentation outline
+├── models/                       # Saved models and artifacts
+├── logs/                         # Execution logs
+├── requirements.txt              # Python dependencies
+├── README.md                     # This file
+├── LICENSE                       # MIT License
+└── .gitignore
+
 ```
 
-## Features
+## 🛠️ Installation & Setup
 
-- **Data Loading & Cleaning**: Robust data loading with missing value handling and duplicate removal
-- **Feature Engineering**: Automated feature identification, encoding, and scaling
-- **Model Training**: Support for multiple classification algorithms (Random Forest, Logistic Regression)
-- **Model Evaluation**: Comprehensive evaluation with ROC AUC, confusion matrix, and classification reports
-- **Logging**: Detailed logging throughout the pipeline
-- **Configuration Management**: YAML-based configuration for easy customization
-- **Unit Tests**: Test coverage for data pipeline components
-- **EDA Notebook**: Interactive exploratory data analysis
+### Prerequisites
+- Python 3.8 or higher
+- pip (Python package installer)
 
-## Requirements
-
-- Python 3.8+
-- See `requirements.txt` for complete list of dependencies
-
-## Installation
-
-### 1. Clone the Repository
+### Quick Setup
 
 ```bash
+# 1. Clone the repository
 git clone https://github.com/gerardoportillodev/ML_Final_Project.git
 cd ML_Final_Project
-```
 
-### 2. Create Virtual Environment
-
-```bash
-# Create virtual environment
+# 2. Create virtual environment
 python3 -m venv venv
 
-# Activate virtual environment
+# 3. Activate virtual environment
 # On Linux/Mac:
 source venv/bin/activate
 # On Windows:
 # venv\Scripts\activate
-```
 
-### 3. Install Dependencies
-
-```bash
+# 4. Install dependencies
 pip install -r requirements.txt
+
+# 5. Place your data file
+# Copy your dataset to: data/raw/base_historica.csv
 ```
 
-### 4. Prepare Data
+### Using Setup Scripts
 
-Place your `base_historica.csv` file in the `data/raw/` directory:
-
+**Linux/Mac**:
 ```bash
-# Make sure the data file is in the correct location
-# data/raw/base_historica.csv
+chmod +x setup.sh
+./setup.sh
 ```
 
-## Usage
-
-### Step 1: Data Loading and Cleaning
-
-```bash
-python src/data_loader.py
+**Windows**:
+```cmd
+setup.bat
 ```
 
-This script will:
-- Load the raw data from `data/raw/base_historica.csv`
-- Display data information and statistics
-- Clean the data (remove duplicates and handle missing values)
-- Save processed data to `data/processed/processed_data.csv`
+## 📓 Notebooks Workflow
 
-### Step 2: Model Training
+### 1. EDA and Preprocessing (`01_eda_preprocessing.ipynb`)
+- Dataset description and origin documentation
+- Data loading and initial exploration
+- Missing value analysis and treatment
+- Outlier detection and handling
+- Feature distributions and correlations
+- Data cleaning and preparation
+
+### 2. Dimensionality Reduction (`02_dimensionality_reduction.ipynb`)
+- **PCA Implementation**:
+  - Explained variance analysis
+  - Component selection
+  - Feature loadings interpretation
+  - 2D and 3D visualizations
+  
+- **UMAP Implementation**:
+  - Parameter tuning (n_neighbors, min_dist)
+  - 2D and 3D projections
+  - Comparison with PCA
+  
+- **Comparison**: Which method reveals better structure and why?
+
+### 3. Clustering (`03_clustering.ipynb`)
+- **KMeans**:
+  - Elbow method for optimal k
+  - Silhouette analysis
+  - Cluster assignment and visualization
+  
+- **DBSCAN**:
+  - Parameter selection (eps, min_samples)
+  - Density-based cluster discovery
+  - Noise point identification
+  
+- **Evaluation**:
+  - Silhouette Score
+  - Davies-Bouldin Index
+  - Calinski-Harabasz Index
+  - Method comparison
+
+### 4. Interpretation (`04_interpretation_conclusions.ipynb`)
+- Cluster profiling (statistical characteristics)
+- Domain-specific interpretation
+- Actionable insights extraction
+- Limitations discussion
+- Future work recommendations
+
+## 🔬 Evaluation Metrics
+
+The project uses three internal clustering metrics implemented in `src/evaluation.py`:
+
+1. **Silhouette Score** [-1, 1]: Measures cluster cohesion and separation (higher is better)
+2. **Davies-Bouldin Index** [0, ∞): Measures average similarity ratio of clusters (lower is better)
+3. **Calinski-Harabasz Index** [0, ∞): Variance ratio criterion (higher is better)
+
+## 📈 Usage
+
+### Running the Analysis
 
 ```bash
-# Train Random Forest (default)
-python src/train_model.py
+# Activate virtual environment
+source venv/bin/activate  # or venv\Scripts\activate on Windows
 
-# Or train Logistic Regression
-python src/train_model.py logistic_regression
+# Launch Jupyter
+jupyter notebook
+
+# Open and run notebooks in sequence:
+# 1. notebooks/01_eda_preprocessing.ipynb
+# 2. notebooks/02_dimensionality_reduction.ipynb
+# 3. notebooks/03_clustering.ipynb
+# 4. notebooks/04_interpretation_conclusions.ipynb
 ```
 
-This script will:
-- Load the processed data
-- Perform feature engineering (encoding, scaling)
-- Split data into training and test sets
-- Train the classification model
-- Perform cross-validation
-- Save the trained model and artifacts
+### Using the Modules Programmatically
 
-### Step 3: Model Evaluation
+```python
+from src.preprocessing import DataPreprocessor
+from src.dim_reduction import DimensionalityReducer
+from src.clustering import ClusteringAnalyzer
+from src.evaluation import ClusteringEvaluator
 
-```bash
-python src/evaluate_model.py
+# Preprocess data
+preprocessor = DataPreprocessor(scaling_method='standard')
+data_clean = preprocessor.preprocess(data)
+
+# Apply dimensionality reduction
+reducer = DimensionalityReducer()
+X_pca, pca_model = reducer.apply_pca(data_clean, variance_threshold=0.95)
+X_umap, umap_model = reducer.apply_umap(data_clean, n_components=2)
+
+# Cluster the data
+clusterer = ClusteringAnalyzer()
+labels_kmeans, kmeans_model = clusterer.apply_kmeans(X_pca, n_clusters=3)
+labels_dbscan, dbscan_model = clusterer.apply_dbscan(X_pca, eps=0.5)
+
+# Evaluate clustering
+evaluator = ClusteringEvaluator()
+metrics_kmeans = evaluator.evaluate_clustering(X_pca, labels_kmeans, 'kmeans')
+metrics_dbscan = evaluator.evaluate_clustering(X_pca, labels_dbscan, 'dbscan')
 ```
 
-This script will:
-- Load the trained model
-- Make predictions on test data
-- Calculate evaluation metrics (accuracy, precision, recall, F1, ROC AUC)
-- Generate and save evaluation plots:
-  - Confusion matrix
-  - ROC curve
-  - Precision-Recall curve
-- Display classification report
+## 📝 Reports
 
-### Step 4: Exploratory Data Analysis (Optional)
+### Technical Report
+A comprehensive technical report template is provided in `reports/technical_report_template.md` with sections for:
+- Introduction and objectives
+- Dataset description
+- Methodology
+- EDA findings
+- Dimensionality reduction results
+- Clustering results
+- Domain interpretation
+- Conclusions and future work
+- References
 
-Launch Jupyter notebook for interactive EDA:
+### Presentation Slides
+An executive presentation outline (≤15 slides) is provided in `reports/slides_outline.md` focusing on:
+- Key findings
+- Business value
+- Actionable recommendations
+- Visual summaries
 
-```bash
-jupyter notebook notebooks/eda_credit_risk.ipynb
+## 🗺️ Rubric Requirements Mapping
+
+| Requirement | Location in Repository |
+|------------|------------------------|
+| **Dataset (≥1000 rows, ≥10 vars)** | `data/raw/base_historica.csv` |
+| **EDA & Preprocessing** | `notebooks/01_eda_preprocessing.ipynb` |
+| **PCA Implementation** | `notebooks/02_dimensionality_reduction.ipynb`, `src/dim_reduction.py` |
+| **UMAP Implementation** | `notebooks/02_dimensionality_reduction.ipynb`, `src/dim_reduction.py` |
+| **KMeans Clustering** | `notebooks/03_clustering.ipynb`, `src/clustering.py` |
+| **DBSCAN Clustering** | `notebooks/03_clustering.ipynb`, `src/clustering.py` |
+| **Silhouette Score** | `src/evaluation.py` (line ~30) |
+| **Davies-Bouldin Index** | `src/evaluation.py` (line ~60) |
+| **Calinski-Harabasz Index** | `src/evaluation.py` (line ~90) |
+| **Method Comparison** | `notebooks/03_clustering.ipynb`, `src/evaluation.py` |
+| **2D/3D Visualizations** | All notebooks, visualization functions in `src/` |
+| **Domain Interpretation** | `notebooks/04_interpretation_conclusions.ipynb` |
+| **Technical Report** | `reports/technical_report_template.md` |
+| **Presentation Slides** | `reports/slides_outline.md` |
+| **Source Code** | `src/` directory |
+| **Documentation** | `README.md` (this file), inline code comments |
+
+## 🔧 Configuration
+
+Edit `config/config.yaml` to customize:
+- Data paths
+- Preprocessing parameters
+- Dimensionality reduction settings
+- Clustering parameters
+- Logging configuration
+
+Example:
+```yaml
+dim_reduction:
+  pca:
+    variance_threshold: 0.95
+  umap:
+    n_components: 2
+    n_neighbors: 15
+    
+clustering:
+  kmeans:
+    n_clusters: 3
+  dbscan:
+    eps: 0.5
+    min_samples: 5
 ```
 
-## Running Tests
-
-Execute the unit tests to verify the data pipeline:
+## 🧪 Testing
 
 ```bash
-# Run all tests
+# Run unit tests
 pytest tests/ -v
 
 # Run with coverage
 pytest tests/ -v --cov=src --cov-report=html
 ```
 
-## Configuration
+## 📦 Dependencies
 
-Edit `config/config.yaml` to customize:
+Key libraries used:
+- **Data Processing**: pandas, numpy
+- **Dimensionality Reduction**: scikit-learn (PCA), umap-learn (UMAP)
+- **Clustering**: scikit-learn (KMeans, DBSCAN), hdbscan
+- **Visualization**: matplotlib, seaborn, plotly
+- **Evaluation**: scikit-learn metrics
+- **Notebooks**: jupyter, ipykernel
 
-- Data paths
-- Model parameters
-- Logging settings
-- Feature engineering options
+See `requirements.txt` for complete list.
 
-Example configuration:
+## 🤝 Contributing
 
-```yaml
-data:
-  raw_data_path: "data/raw/base_historica.csv"
-  processed_data_path: "data/processed/processed_data.csv"
-
-model_params:
-  test_size: 0.2
-  random_state: 42
-  cv_folds: 5
-
-features:
-  target_column: "default"
-```
-
-## Model Performance
-
-The project evaluates models using multiple metrics:
-
-- **ROC AUC**: Area under the ROC curve
-- **Accuracy**: Overall prediction accuracy
-- **Precision**: Positive predictive value
-- **Recall**: True positive rate
-- **F1 Score**: Harmonic mean of precision and recall
-- **Confusion Matrix**: Visual representation of predictions
-
-Results are saved in the `evaluation_results/` directory with visualization plots.
-
-## Using the Project as a Library
-
-You can also import and use the modules in your own Python scripts:
-
-```python
-from src.data_loader import DataLoader
-from src.feature_engineering import FeatureEngineer
-from src.train_model import ModelTrainer
-from src.evaluate_model import ModelEvaluator
-
-# Load and clean data
-loader = DataLoader()
-data = loader.load_data()
-cleaned_data = loader.clean_data()
-
-# Prepare features
-engineer = FeatureEngineer()
-X, y = engineer.prepare_features(cleaned_data)
-
-# Train model
-trainer = ModelTrainer()
-model = trainer.train_random_forest(X, y)
-
-# Evaluate model
-evaluator = ModelEvaluator()
-evaluator.model = model
-results = evaluator.evaluate_model(X_test, y_test)
-```
-
-## Logging
-
-Logs are automatically saved to the `logs/` directory with timestamps. Log level can be configured in `config/config.yaml`.
-
-## Troubleshooting
-
-### Data File Not Found
-
-Ensure `base_historica.csv` is in the `data/raw/` directory:
-
-```bash
-ls data/raw/base_historica.csv
-```
-
-### Module Import Errors
-
-Make sure you've activated the virtual environment and installed all dependencies:
-
-```bash
-source venv/bin/activate  # or venv\Scripts\activate on Windows
-pip install -r requirements.txt
-```
-
-### Permission Errors
-
-Ensure you have write permissions for the `data/`, `models/`, and `logs/` directories.
-
-## Contributing
-
+This is an academic project. If you have suggestions for improvements:
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/new-feature`)
-3. Commit your changes (`git commit -am 'Add new feature'`)
-4. Push to the branch (`git push origin feature/new-feature`)
-5. Create a Pull Request
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
 
-## License
+## 📄 License
 
-This project is part of an academic assignment for the Machine Learning course.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Authors
+## 👥 Authors
 
-- ML Team - Credit Risk Analysis
+ML Final Project Team - Unsupervised Learning Course
 
-## Acknowledgments
+## 🙏 Acknowledgments
 
-- Scikit-learn documentation and examples
-- Pandas and NumPy communities
-- Machine Learning course materials
+- Course instructors and teaching assistants
+- scikit-learn, UMAP, and open-source ML community
+- Dataset providers
+
+## 📞 Support
+
+For questions or issues:
+- Open an issue in the GitHub repository
+- Contact the project team
+- Refer to the technical documentation in `reports/`
+
+---
+
+**Note**: This is an academic project for the Unsupervised Learning final assignment. The focus is on demonstrating mastery of unsupervised learning techniques, rigorous evaluation, and domain interpretation.
