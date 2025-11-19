@@ -98,10 +98,10 @@ class TestFeatureEngineer:
     def sample_data(self):
         """Create sample data for testing."""
         return pd.DataFrame({
-            'num_feature1': [1, 2, 3, 4, 5],
-            'num_feature2': [10, 20, 30, 40, 50],
-            'cat_feature': ['A', 'B', 'A', 'B', 'A'],
-            'default': [0, 1, 0, 1, 0]
+            'num_feature1': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            'num_feature2': [10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+            'cat_feature': ['A', 'B', 'A', 'B', 'A', 'B', 'A', 'B', 'A', 'B'],
+            'default': [0, 1, 0, 1, 0, 1, 0, 1, 0, 1]
         })
     
     def test_feature_engineer_initialization(self):
@@ -149,8 +149,8 @@ class TestFeatureEngineer:
         engineer = FeatureEngineer()
         X, y = engineer.prepare_features(sample_data, target_column='default', fit=True)
         
-        assert X.shape[0] == 5
-        assert y.shape[0] == 5
+        assert X.shape[0] == 10
+        assert y.shape[0] == 10
         assert 'default' not in X.columns
         assert len(engineer.feature_names) > 0
     
@@ -161,10 +161,10 @@ class TestFeatureEngineer:
         
         X_train, X_test, y_train, y_test = engineer.split_data(X, y, test_size=0.2)
         
-        assert X_train.shape[0] == 4
-        assert X_test.shape[0] == 1
-        assert y_train.shape[0] == 4
-        assert y_test.shape[0] == 1
+        assert X_train.shape[0] == 8
+        assert X_test.shape[0] == 2
+        assert y_train.shape[0] == 8
+        assert y_test.shape[0] == 2
 
 
 class TestIntegration:
