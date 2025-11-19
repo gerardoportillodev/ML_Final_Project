@@ -290,7 +290,16 @@ def evaluate_pipeline(test_data_path=None, output_dir='evaluation_results'):
     logger.info(f"Loaded test data from {test_data_path}")
     
     # Separate features and target
-    target_column = config['features'].get('target_column', 'target')
+    target_column = config['features'].get('target_column', 'default')
+    
+    # Check if target column exists, otherwise try 'target' for backward compatibility
+    if target_column not in test_data.columns:
+        if 'target' in test_data.columns:
+            target_column = 'target'
+            logger.warning(f"Original target column not found, using 'target' column")
+        else:
+            raise ValueError(f"Neither '{target_column}' nor 'target' column found in test data")
+    
     X_test = test_data.drop(columns=[target_column])
     y_test = test_data[target_column]
     

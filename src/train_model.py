@@ -250,8 +250,10 @@ def train_pipeline(data_path=None, model_type='random_forest'):
     train_data_path = get_absolute_path(config['data']['train_data_path'])
     test_data_path = get_absolute_path(config['data']['test_data_path'])
     
-    X_train['target'] = y_train
-    X_test['target'] = y_test
+    # Use original target column name
+    target_column = config['features'].get('target_column', 'default')
+    X_train[target_column] = y_train.values
+    X_test[target_column] = y_test.values
     
     X_train.to_csv(train_data_path, index=False)
     X_test.to_csv(test_data_path, index=False)
