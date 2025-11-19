@@ -1,0 +1,33 @@
+# Configuration file for Credit Risk ML Project
+# Paths and settings for the project
+
+# Data paths
+data:
+  raw_data_path: "data/raw/base_historica.csv"
+  processed_data_path: "data/processed/processed_data.csv"
+  train_data_path: "data/processed/train.csv"
+  test_data_path: "data/processed/test.csv"
+
+# Model paths
+model:
+  model_path: "models/credit_risk_model.pkl"
+  scaler_path: "models/scaler.pkl"
+  feature_names_path: "models/feature_names.pkl"
+
+# Logging
+logging:
+  log_dir: "logs"
+  log_file: "logs/credit_risk_ml.log"
+  log_level: "INFO"
+
+# Model parameters
+model_params:
+  test_size: 0.2
+  random_state: 42
+  cv_folds: 5
+
+# Feature engineering
+features:
+  numerical_features: []
+  categorical_features: []
+  target_column: "default"
